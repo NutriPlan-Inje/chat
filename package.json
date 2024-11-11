@@ -4,13 +4,15 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --runInBand",
-    "start": "nodemon src/server.ts"
+    "start": "nodemon src/server.ts",
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
     "cors": "^2.8.5",
+    "docker-compose": "^1.1.0",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "mysql2": "^3.11.3",

@@ -1,0 +1,38 @@
+version: "3.8"
+
+services: 
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}     # root 사용자 비밀번호
+      MYSQL_DATABASE: ${DB_DATABASE}          # 초기 생성할 데이터베이스
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DB_HOST: ${DB_HOST}                     # mysql로 설정 (localhost 아님)
+      DB_PORT: ${DB_PORT}                     # 3306 포트
+      DB_USER: ${DB_USER}                     # root 사용자
+      DB_PASSWORD: ${DB_PASSWORD}             # root 비밀번호
+      DB_DATABASE: ${DB_DATABASE}             # 데이터베이스 이름
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+      - redis
+    volumes:
+      - .:/usr/src/app
+
+volumes:
+  mysql_data:

@@ -2,7 +2,7 @@ import createApp from './app';
 import dotenv from 'dotenv';
 
 dotenv.config();
-const PORT = process.env.PORT || 3030;
+const PORT = process.env.PORT || 9999;
 
 (async function serverStart() {
     try {
@@ -16,4 +16,3 @@ const PORT = process.env.PORT || 3030;
         process.exit(1);  // 서버 시작 중 오류 발생 시 종료
     }
 })();
- 
