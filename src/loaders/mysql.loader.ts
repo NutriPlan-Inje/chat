@@ -5,6 +5,7 @@ dotenv.config();
 
 export default async () => {
     try{
+        console.log(process.env);
         const pool = mysql.createPool({
             host : process.env.DB_HOST,
             user : process.env.DB_USER,
